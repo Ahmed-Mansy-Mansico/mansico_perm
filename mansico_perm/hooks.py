@@ -241,4 +241,11 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+# import mansico_perm.scripts as scripts
+
+# import frappe.desk.reportview as _reports_view
+
+# # Override the function
+
+# scripts.new_compress = _reports_view.compress
 

@@ -1,0 +1,41 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-22 14:28:25.362973",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "doctype_name",
+  "doctype_field_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "doctype_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Doctype Name",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "doctype_field_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Doctype Field Name",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-04-22 14:29:32.787005",
+ "modified_by": "Administrator",
+ "module": "Mansico Perm",
+ "name": "Doctypes to filter In based on selected Dcotype",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
