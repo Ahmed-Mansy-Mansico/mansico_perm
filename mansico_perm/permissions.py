@@ -19,7 +19,10 @@ class GenFilters:
                     "disabled": 0
                 })
             )
-        return self._custom_permission
+            role_perm = frappe.db.get_value("Custom Permission", {
+                    "disabled": 0
+                }, "role")
+        return self._custom_permission and role_perm in frappe.get_roles(frappe.session.user)
 
     @property
     def customer_names(self):

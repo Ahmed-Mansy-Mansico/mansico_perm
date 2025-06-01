@@ -6,10 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "user_field",
-  "table_doctype",
-  "disabled",
-  "section_break_zsrn",
-  "doctypes_to_filter_in_based_on_selected_dcotype"
+  "role",
+  "disabled"
  ],
  "fields": [
   {
@@ -21,15 +19,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "table_doctype",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Doctype",
-   "options": "DocType",
-   "reqd": 1
-  },
-  {
    "default": "0",
    "fieldname": "disabled",
    "fieldtype": "Check",
@@ -37,20 +26,16 @@
    "label": "Disabled"
   },
   {
-   "fieldname": "section_break_zsrn",
-   "fieldtype": "Section Break",
-   "label": "Doctypes to filter In based on selected Dcotype"
-  },
-  {
-   "fieldname": "doctypes_to_filter_in_based_on_selected_dcotype",
-   "fieldtype": "Table",
-   "label": "Doctypes to filter In based on selected Dcotype",
-   "options": "Doctypes to filter In based on selected Dcotype"
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "label": "Role",
+   "options": "Role"
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-22 14:36:31.346781",
+ "modified": "2025-05-22 20:26:20.511790",
  "modified_by": "Administrator",
  "module": "Mansico Perm",
  "name": "Custom Permission",
@@ -69,6 +54,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

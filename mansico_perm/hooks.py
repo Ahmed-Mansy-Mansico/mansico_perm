@@ -4,6 +4,9 @@ app_publisher = "Mansy"
 app_description = "Custom frappe Erpnext permissions"
 app_email = "ahmedmansy265@gmail.com"
 app_license = "mit"
+from mansico_perm.override import monkey_patchs
+
+monkey_patchs()
 
 # Apps
 # ------------------
