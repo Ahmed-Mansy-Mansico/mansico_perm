@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class CustomPermission(Document):
+class CustomPermissions(Document):
 	pass

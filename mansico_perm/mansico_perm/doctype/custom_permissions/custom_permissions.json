@@ -1,16 +1,26 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-04-21 20:27:23.794975",
+ "creation": "2025-07-18 22:47:36.741194",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "doctype_name",
   "user_field",
   "role",
   "disabled"
  ],
  "fields": [
   {
+   "fieldname": "doctype_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "DocType Name",
+   "options": "DocType"
+  },
+  {
+   "default": "custom_user",
    "fieldname": "user_field",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -19,36 +29,35 @@
    "reqd": 1
   },
   {
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "label": "Role",
+   "options": "Role"
+  },
+  {
    "default": "0",
    "fieldname": "disabled",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Disabled"
-  },
-  {
-   "fieldname": "role",
-   "fieldtype": "Link",
-   "label": "Role",
-   "options": "Role"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "issingle": 1,
  "links": [],
- "modified": "2025-05-22 20:26:20.511790",
- "modified_by": "Administrator",
+ "modified": "2025-07-18 22:47:36.741194",
+ "modified_by": "mansy.mansico@gmail.com",
  "module": "Mansico Perm",
- "name": "Custom Permission",
- "owner": "Administrator",
+ "name": "Custom Permissions",
+ "owner": "mansy.mansico@gmail.com",
  "permissions": [
   {
    "create": 1,
    "delete": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
-   "report": 1,
    "role": "System Manager",
    "share": 1,
    "write": 1
@@ -57,5 +66,8 @@
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }

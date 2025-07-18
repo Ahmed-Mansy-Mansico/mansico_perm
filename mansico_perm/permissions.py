@@ -9,28 +9,23 @@ class GenFilters:
         self._customer_names = None
         self._doctype_fields_map = None
         self._custom_permission = None
+        self.perm_doctype = frappe.db.get_single_value("Custom Permissions", "doctype_name")
+        self.user_field = frappe.db.get_single_value("Custom Permissions", "user_field")
+        self.role_perm = frappe.db.get_single_value("Custom Permissions", "role")
+        self._custom_permission = (frappe.db.get_single_value("Custom Permissions", "disabled") == 0)
 
     @property
     def custom_permission(self):
-        """Check if user has custom permission"""
-        if self._custom_permission is None:
-            self._custom_permission = bool(
-                frappe.db.exists("Custom Permission", {
-                    "disabled": 0
-                })
-            )
-            role_perm = frappe.db.get_value("Custom Permission", {
-                    "disabled": 0
-                }, "role")
-        return self._custom_permission and role_perm in frappe.get_roles(frappe.session.user)
+        """Check if user has Custom Permissions"""
+        return self._custom_permission and self.role_perm in frappe.get_roles(frappe.session.user)
 
     @property
     def customer_names(self):
         """Get customer names managed by current user"""
         if self._customer_names is None:
             self._customer_names = frappe.get_all(
-                "Customer",
-                filters={"account_manager": frappe.session.user},
+                self.perm_doctype,
+                filters={self.user_field: frappe.session.user},
                 pluck="name"
             ) or []
         return self._customer_names
@@ -43,7 +38,7 @@ class GenFilters:
                 "DocField",
                 filters={
                     "fieldtype": "Link",
-                    "options": "Customer"
+                    "options": self.perm_doctype,
                 },
                 fields=["parent", "fieldname"],
                 distinct=True
@@ -51,7 +46,7 @@ class GenFilters:
             self._doctype_fields_map = {
                 field["parent"]: field["fieldname"]
                 for field in fields 
-                if field["parent"] != "Customer"
+                if field["parent"] != self.perm_doctype
             }
         return self._doctype_fields_map
 
@@ -61,7 +56,7 @@ class GenFilters:
                 "DocField",
                 {
                     "fieldtype": "Link",
-                    "options": "Customer",
+                    "options": self.perm_doctype,
                     "parent": self.doctype,
                 },
                 ["fieldname"]
@@ -96,7 +91,7 @@ class GenFilters:
 def process_kwargs(doctype, *args, **kwargs):
     """Process and modify filters based on user permissions"""
     gen_filters = GenFilters(doctype, *args, **kwargs)
-    
+
     if not gen_filters.custom_permission:
         return
         
@@ -105,7 +100,7 @@ def process_kwargs(doctype, *args, **kwargs):
         kwargs["filters"] = []
     
     # Handle Customer doctype specifically
-    if doctype == "Customer":
+    if doctype == gen_filters.perm_doctype:
         if gen_filters.customer_names:
             kwargs["filters"].append(["name", "in", gen_filters.customer_names])
         return
